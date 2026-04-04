@@ -1,0 +1,2023 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Апарт-отель «Ламонт» | Роскошь на высоте 1800 метров</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ========================================
+           CSS ПЕРЕМЕННЫЕ
+        ======================================== */
+        :root {
+            --color-primary: #0A1929;
+            --color-secondary: #1A1E2A;
+            --color-white: #FFFFFF;
+            --color-gold: #C5A059;
+            --color-gold-light: #D4B06A;
+            --color-text-muted: #A0A8B0;
+            --color-glass: rgba(255, 255, 255, 0.08);
+            --color-glass-hover: rgba(255, 255, 255, 0.12);
+            
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            
+            --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.3);
+            --shadow-glow: 0 0 30px rgba(197, 160, 89, 0.3);
+            --shadow-card: 0 20px 60px rgba(0, 0, 0, 0.4);
+            
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-fast: all 0.2s ease;
+            
+            --border-radius-lg: 20px;
+            --border-radius-md: 12px;
+            --border-radius-sm: 8px;
+        }
+        
+        /* ========================================
+           БАЗОВЫЕ СТИЛИ
+        ======================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section {
+            padding: 6rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .section {
+                padding: 4rem 0;
+            }
+        }
+        
+        /* ========================================
+           АНИМАЦИИ ПРИ СКРОЛЛЕ
+        ======================================== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* ========================================
+           ХЕДЕР
+        ======================================== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: transparent;
+            transition: var(--transition-smooth);
+            padding: 1.5rem 0;
+        }
+        
+        header.scrolled {
+            background: rgba(10, 25, 41, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            box-shadow: var(--shadow-soft);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-white);
+            letter-spacing: 2px;
+        }
+        
+        .logo span {
+            color: var(--color-gold);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+        
+        .nav-links a {
+            color: var(--color-white);
+            font-size: 0.95rem;
+            font-weight: 400;
+            transition: var(--transition-fast);
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--color-gold);
+            transition: var(--transition-fast);
+        }
+        
+        .nav-links a:hover {
+            color: var(--color-gold);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .btn-book {
+            background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-light) 100%);
+            color: var(--color-primary);
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition-smooth);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-book:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 2px;
+            background: var(--color-white);
+            transition: var(--transition-fast);
+        }
+        
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+        
+        /* Мобильное меню */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: rgba(10, 25, 41, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            transition: var(--transition-smooth);
+        }
+        
+        .mobile-nav.active {
+            right: 0;
+        }
+        
+        .mobile-nav a {
+            color: var(--color-white);
+            font-size: 1.5rem;
+            font-family: var(--font-heading);
+        }
+        
+        .mobile-nav a:hover {
+            color: var(--color-gold);
+        }
+        
+        /* ========================================
+           HERO СЕКЦИЯ
+        ======================================== */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)),
+                        url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            padding: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--color-text-muted);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+        
+        .btn-hero-primary {
+            background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-light) 100%);
+            color: var(--color-primary);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+        }
+        
+        .btn-hero-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-glow);
+        }
+        
+        .btn-hero-secondary {
+            background: transparent;
+            color: var(--color-white);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 2px solid var(--color-white);
+            transition: var(--transition-smooth);
+        }
+        
+        .btn-hero-secondary:hover {
+            background: var(--color-white);
+            color: var(--color-primary);
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+            animation: bounce 2s infinite;
+        }
+        
+        .scroll-indicator i {
+            font-size: 1.2rem;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+        
+        /* ========================================
+           СЕКЦИЯ "ОТЕЛЬ В ДЕТАЛЯХ"
+        ======================================== */
+        .about {
+            background: var(--color-secondary);
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about-image {
+            position: relative;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .about-content h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-white);
+        }
+        
+        .about-content p {
+            color: var(--color-text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+        
+        .stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 2.5rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            color: var(--color-gold);
+            font-weight: 700;
+        }
+        
+        .stat-label {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* ========================================
+           СЕКЦИЯ "НОМЕРА И ЦЕНЫ"
+        ======================================== */
+        .rooms {
+            background: var(--color-primary);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--color-white);
+        }
+        
+        .section-header p {
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Карусель номеров */
+        .rooms-carousel {
+            position: relative;
+            overflow: hidden;
+            padding: 2rem 0;
+        }
+        
+        .rooms-track {
+            display: flex;
+            gap: 2rem;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .room-card {
+            min-width: calc(33.333% - 1.33rem);
+            background: var(--color-glass);
+            backdrop-filter: blur(20px);
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition-smooth);
+        }
+        
+        .room-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-card);
+            border-color: rgba(197, 160, 89, 0.3);
+        }
+        
+        .room-image {
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .room-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+        
+        .room-card:hover .room-image img {
+            transform: scale(1.1);
+        }
+        
+        .room-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-light) 100%);
+            color: var(--color-primary);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .room-content {
+            padding: 2rem;
+        }
+        
+        .room-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-white);
+        }
+        
+        .room-description {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .room-features {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+        
+        .room-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+        }
+        
+        .room-feature i {
+            color: var(--color-gold);
+        }
+        
+        .room-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .room-price {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--color-gold);
+            font-weight: 700;
+        }
+        
+        .room-price span {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            font-weight: 400;
+        }
+        
+        .btn-room {
+            background: transparent;
+            color: var(--color-gold);
+            padding: 0.7rem 1.5rem;
+            border: 1px solid var(--color-gold);
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+        
+        .btn-room:hover {
+            background: var(--color-gold);
+            color: var(--color-primary);
+        }
+        
+        /* Навигация карусели */
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .carousel-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--color-glass);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--color-white);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .carousel-btn:hover {
+            background: var(--color-gold);
+            border-color: var(--color-gold);
+            color: var(--color-primary);
+        }
+        
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+        
+        .carousel-dot.active {
+            background: var(--color-gold);
+            width: 30px;
+            border-radius: 5px;
+        }
+        
+        /* ========================================
+           СЕКЦИЯ "УСЛУГИ И УДОБСТВА"
+        ======================================== */
+        .amenities {
+            background: var(--color-secondary);
+        }
+        
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .amenity-card {
+            background: var(--color-glass);
+            backdrop-filter: blur(20px);
+            padding: 2.5rem;
+            border-radius: var(--border-radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition-smooth);
+            text-align: center;
+        }
+        
+        .amenity-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(197, 160, 89, 0.3);
+            box-shadow: var(--shadow-glow);
+        }
+        
+        .amenity-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, rgba(197, 160, 89, 0.2) 0%, rgba(197, 160, 89, 0.05) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--color-gold);
+        }
+        
+        .amenity-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-white);
+        }
+        
+        .amenity-card p {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+        }
+        
+        /* ========================================
+           ГАЛЕРЕЯ
+        ======================================== */
+        .gallery {
+            background: var(--color-primary);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 4/3;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+            opacity: 0;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-caption {
+            color: var(--color-white);
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+        }
+        
+        /* Лайтбокс */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .lightbox.active {
+            display: flex;
+        }
+        
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: var(--border-radius-md);
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: none;
+            border: none;
+            color: var(--color-white);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+        
+        .lightbox-close:hover {
+            color: var(--color-gold);
+        }
+        
+        /* ========================================
+           ОТЗЫВЫ
+        ======================================== */
+        .reviews {
+            background: var(--color-secondary);
+        }
+        
+        .reviews-carousel {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .reviews-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .review-card {
+            min-width: 100%;
+            background: var(--color-glass);
+            backdrop-filter: blur(20px);
+            padding: 3rem;
+            border-radius: var(--border-radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+        
+        .review-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1.5rem;
+            border: 3px solid var(--color-gold);
+        }
+        
+        .review-stars {
+            color: var(--color-gold);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .review-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--color-text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        .review-author {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            color: var(--color-white);
+        }
+        
+        .review-location {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        .reviews-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        /* ========================================
+           КОНТАКТЫ И ФОРМА БРОНИРОВАНИЯ
+        ======================================== */
+        .contact {
+            background: var(--color-primary);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+        
+        .contact-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-white);
+        }
+        
+        .contact-info p {
+            color: var(--color-text-muted);
+            margin-bottom: 2rem;
+        }
+        
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: var(--color-text-muted);
+        }
+        
+        .contact-item i {
+            color: var(--color-gold);
+            font-size: 1.2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--color-glass);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-white);
+            font-size: 1.2rem;
+            transition: var(--transition-smooth);
+        }
+        
+        .social-link:hover {
+            background: var(--color-gold);
+            border-color: var(--color-gold);
+            color: var(--color-primary);
+        }
+        
+        .booking-form-container {
+            background: var(--color-glass);
+            backdrop-filter: blur(20px);
+            padding: 2.5rem;
+            border-radius: var(--border-radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .booking-form-container h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-white);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--border-radius-sm);
+            color: var(--color-white);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: var(--transition-fast);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--color-gold);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .btn-submit {
+            width: 100%;
+            background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-light) 100%);
+            color: var(--color-primary);
+            padding: 1rem;
+            border: none;
+            border-radius: var(--border-radius-sm);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+        
+        .map-container {
+            margin-top: 3rem;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            height: 400px;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Уведомление об успешной отправке */
+        .notification {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--color-gold);
+            color: var(--color-primary);
+            padding: 1.5rem 2rem;
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-card);
+            z-index: 3000;
+            transform: translateX(150%);
+            transition: transform 0.4s ease;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        /* ========================================
+           ФУТЕР
+        ======================================== */
+        footer {
+            background: linear-gradient(135deg, #0A1929 0%, #0f1f3a 100%);
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-brand .logo {
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        
+        .footer-brand p {
+            color: var(--color-text-muted);
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-tagline {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            color: var(--color-gold);
+            font-style: italic;
+        }
+        
+        .footer-links h4,
+        .footer-contact h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-white);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: var(--color-text-muted);
+            transition: var(--transition-fast);
+        }
+        
+        .footer-links a:hover {
+            color: var(--color-gold);
+        }
+        
+        .footer-contact p {
+            color: var(--color-text-muted);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .footer-contact i {
+            color: var(--color-gold);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .footer-bottom p {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .footer-bottom a {
+            color: var(--color-gold);
+        }
+        
+        /* ========================================
+           МОДАЛЬНОЕ ОКНО БРОНИРОВАНИЯ
+        ======================================== */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: var(--color-secondary);
+            padding: 3rem;
+            border-radius: var(--border-radius-lg);
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--color-white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+        
+        .modal-close:hover {
+            color: var(--color-gold);
+        }
+        
+        .modal h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-white);
+            text-align: center;
+        }
+        
+        /* ========================================
+           АДАПТИВНОСТЬ
+        ======================================== */
+        @media (max-width: 1024px) {
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links,
+            .btn-book {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .section-header h2,
+            .about-content h2 {
+                font-size: 2rem;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .room-card {
+                min-width: calc(100% - 1.33rem);
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-grid {
+                gap: 2rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .booking-form-container {
+                padding: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .room-content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Хедер -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Lamont<span>.</span></a>
+                <ul class="nav-links">
+                    <li><a href="#about">Главная</a></li>
+                    <li><a href="#rooms">Номера</a></li>
+                    <li><a href="#amenities">Удобства</a></li>
+                    <li><a href="#gallery">Галерея</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+                <button class="btn-book" onclick="openModal()">Забронировать</button>
+                <button class="mobile-menu-btn" onclick="toggleMobileNav()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Мобильное меню -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#about" onclick="toggleMobileNav()">Главная</a>
+        <a href="#rooms" onclick="toggleMobileNav()">Номера</a>
+        <a href="#amenities" onclick="toggleMobileNav()">Удобства</a>
+        <a href="#gallery" onclick="toggleMobileNav()">Галерея</a>
+        <a href="#contact" onclick="toggleMobileNav()">Контакты</a>
+    </div>
+    
+    <!-- Hero секция -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Апарт-отель Ламонт — роскошь на высоте 1800 метров</h1>
+            <p>Панорамные виды, приватность и безупречный сервис в сердце гор</p>
+            <div class="hero-buttons">
+                <a href="#rooms" class="btn-hero-primary">Смотреть номера</a>
+                <button class="btn-hero-secondary" onclick="openModal()">Забронировать сейчас</button>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Листайте вниз</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+    
+    <!-- Секция "Отель в деталях" -->
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image fade-in">
+                    <img src="https://images.unsplash.com/photo-1542718610-a1d656d1884c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Интерьер номера с видом на горы" loading="lazy">
+                </div>
+                <div class="about-content fade-in">
+                    <h2>Уединение среди вершин</h2>
+                    <p>Апарт-отель Ламонт — это 15 эксклюзивных апартаментов с панорамными окнами, собственными террасами и доступом к термальным источникам. Дизайн, вдохновлённый альпийской природой, и сервис уровня 5 звёзд.</p>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-number">1850м</div>
+                            <div class="stat-label">Высота</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">15</div>
+                            <div class="stat-label">Апартаментов</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Гостей рекомендуют</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Секция "Номера и цены" -->
+    <section class="section rooms" id="rooms">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Номера и цены</h2>
+                <p>Выберите идеальный апартамент для вашего горного отдыха</p>
+            </div>
+            
+            <div class="rooms-carousel fade-in">
+                <div class="rooms-track" id="roomsTrack">
+                    <!-- Карточка 1: Стандарт -->
+                    <div class="room-card">
+                        <div class="room-image">
+                            <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Стандартный номер" loading="lazy">
+                            <span class="room-badge">Популярный</span>
+                        </div>
+                        <div class="room-content">
+                            <h3 class="room-title">Стандарт</h3>
+                            <p class="room-description">Уютный номер с современным дизайном и всеми необходимыми удобствами</p>
+                            <div class="room-features">
+                                <span class="room-feature"><i class="fas fa-ruler-combined"></i> 30 м²</span>
+                                <span class="room-feature"><i class="fas fa-bed"></i> King-size</span>
+                                <span class="room-feature"><i class="fas fa-tree"></i> Вид на лес</span>
+                            </div>
+                            <div class="room-footer">
+                                <div class="room-price">15 000₽ <span>/ ночь</span></div>
+                                <button class="btn-room" onclick="openModal()">Выбрать</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Карточка 2: Люкс -->
+                    <div class="room-card">
+                        <div class="room-image">
+                            <img src="https://images.unsplash.com/photo-1590490360182-f33fb0d41319?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Люкс номер" loading="lazy">
+                            <span class="room-badge">Рекомендуем</span>
+                        </div>
+                        <div class="room-content">
+                            <h3 class="room-title">Люкс</h3>
+                            <p class="room-description">Просторный номер с камином и джакузи на террасе</p>
+                            <div class="room-features">
+                                <span class="room-feature"><i class="fas fa-ruler-combined"></i> 50 м²</span>
+                                <span class="room-feature"><i class="fas fa-fire"></i> Камин</span>
+                                <span class="room-feature"><i class="fas fa-mountain"></i> Вид на пики</span>
+                            </div>
+                            <div class="room-footer">
+                                <div class="room-price">35 000₽ <span>/ ночь</span></div>
+                                <button class="btn-room" onclick="openModal()">Выбрать</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Карточка 3: Президентский пентхаус -->
+                    <div class="room-card">
+                        <div class="room-image">
+                            <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Президентский пентхаус" loading="lazy">
+                            <span class="room-badge">VIP</span>
+                        </div>
+                        <div class="room-content">
+                            <h3 class="room-title">Президентский пентхаус</h3>
+                            <p class="room-description">Эксклюзивный апартамент с私人 сауной и персональным дворецким</p>
+                            <div class="room-features">
+                                <span class="room-feature"><i class="fas fa-ruler-combined"></i> 120 м²</span>
+                                <span class="room-feature"><i class="fas fa-hot-tub"></i> Сауна</span>
+                                <span class="room-feature"><i class="fas fa-concierge-bell"></i> Дворецкий</span>
+                            </div>
+                            <div class="room-footer">
+                                <div class="room-price">85 000₽ <span>/ ночь</span></div>
+                                <button class="btn-room" onclick="openModal()">Выбрать</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-nav">
+                    <button class="carousel-btn" onclick="moveCarousel(-1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn" onclick="moveCarousel(1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                
+                <div class="carousel-dots" id="roomsDots">
+                    <span class="carousel-dot active" onclick="goToSlide(0)"></span>
+                    <span class="carousel-dot" onclick="goToSlide(1)"></span>
+                    <span class="carousel-dot" onclick="goToSlide(2)"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Секция "Услуги и удобства" -->
+    <section class="section amenities" id="amenities">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Услуги и удобства</h2>
+                <p>Всё для вашего комфортного отдыха в горах</p>
+            </div>
+            
+            <div class="amenities-grid">
+                <div class="amenity-card fade-in">
+                    <div class="amenity-icon">
+                        <i class="fas fa-shuttle-van"></i>
+                    </div>
+                    <h3>Бесплатный трансфер</h3>
+                    <p>От ж/д вокзала до отеля</p>
+                </div>
+                
+                <div class="amenity-card fade-in">
+                    <div class="amenity-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Ресторан локальной кухни</h3>
+                    <p>Авторские блюда от шеф-повара</p>
+                </div>
+                
+                <div class="amenity-card fade-in">
+                    <div class="amenity-icon">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <h3>SPA-центр</h3>
+                    <p>Термальные воды и массаж</p>
+                </div>
+                
+                <div class="amenity-card fade-in">
+                    <div class="amenity-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Круглосуточный консьерж</h3>
+                    <p>Помощь в любое время суток</p>
+                </div>
+                
+                <div class="amenity-card fade-in">
+                    <div class="amenity-icon">
+                        <i class="fas fa-skiing"></i>
+                    </div>
+                    <h3>Прокат снаряжения</h3>
+                    <p>Лыжи, сноуборды и экипировка</p>
+                </div>
+                
+                <div class="amenity-card fade-in">
+                    <div class="amenity-icon">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <h3>Велнес-программы</h3>
+                    <p>Йога на рассвете и медитации</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Галерея -->
+    <section class="section gallery" id="gallery">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Галерея</h2>
+                <p>Почувствуйте атмосферу Ламонта</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item fade-in" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Вид из окна" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-caption">Панорамные виды</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Спа-зона" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-caption">SPA-зона</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Ресторан" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-caption">Ресторан</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Горы" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-caption">Величие гор</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1571896349842-6e53ce41e8f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Интерьер" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-caption">Уютные интерьеры</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Закат" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-caption">Закаты в горах</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Отзывы -->
+    <section class="section reviews" id="reviews">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Отзывы гостей</h2>
+                <p>Что говорят наши гости о пребывании в Ламонте</p>
+            </div>
+            
+            <div class="reviews-carousel fade-in">
+                <div class="reviews-track" id="reviewsTrack">
+                    <div class="review-card">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Анна" class="review-avatar" loading="lazy">
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="review-text">«Невероятный отдых! Вид из номера — как на открытке. Сервис на высшем уровне. Вернёмся обязательно.»</p>
+                        <div class="review-author">Анна и Дмитрий</div>
+                        <div class="review-location">Москва</div>
+                    </div>
+                    
+                    <div class="review-card">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Александр" class="review-avatar" loading="lazy">
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="review-text">«Лучший отель в горах! Термальные источники после лыжной прогулки — это нечто. Рекомендую всем!»</p>
+                        <div class="review-author">Александр Петров</div>
+                        <div class="review-location">Санкт-Петербург</div>
+                    </div>
+                    
+                    <div class="review-card">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Елена" class="review-avatar" loading="lazy">
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="review-text">«Романтический уикенд удался! Камин в номере, джакузи с видом на горы... Это было волшебно!»</p>
+                        <div class="review-author">Елена Смирнова</div>
+                        <div class="review-location">Казань</div>
+                    </div>
+                </div>
+                
+                <div class="reviews-nav">
+                    <button class="carousel-btn" onclick="moveReviews(-1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn" onclick="moveReviews(1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Контакты и форма бронирования -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info fade-in">
+                    <h2>Контакты</h2>
+                    <p>Свяжитесь с нами для бронирования или по любым вопросам</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Альпийская область, горный курорт, ул. Вершинная, 15</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+7 (999) 123-45-67</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@lamont-hotel.ru</span>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                    
+                    <div class="map-container">
+                        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=6.3,43.4,6.7,43.6&amp;layer=mapnik&amp;marker=43.5,6.5" frameborder="0"></iframe>
+                    </div>
+                </div>
+                
+                <div class="booking-form-container fade-in">
+                    <h3>Быстрое бронирование</h3>
+                    <form id="bookingForm" onsubmit="submitForm(event)">
+                        <div class="form-group">
+                            <label for="name">Имя</label>
+                            <input type="text" id="name" name="name" required placeholder="Ваше имя">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contact">Телефон/E-mail</label>
+                            <input type="text" id="contact" name="contact" required placeholder="+7 ___ ___-__-__ или email">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="checkin">Дата заезда</label>
+                                <input type="date" id="checkin" name="checkin" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="checkout">Дата выезда</label>
+                                <input type="date" id="checkout" name="checkout" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="guests">Количество гостей</label>
+                                <select id="guests" name="guests" required>
+                                    <option value="">Выбрать</option>
+                                    <option value="1">1 гость</option>
+                                    <option value="2">2 гостя</option>
+                                    <option value="3">3 гостя</option>
+                                    <option value="4">4+ гостей</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="room-type">Тип номера</label>
+                                <select id="room-type" name="room-type" required>
+                                    <option value="">Выбрать</option>
+                                    <option value="standard">Стандарт</option>
+                                    <option value="lux">Люкс</option>
+                                    <option value="penthouse">Президентский пентхаус</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn-submit">Отправить заявку</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">Lamont<span>.</span></a>
+                    <p>Апарт-отель премиум-класса в самом сердце гор</p>
+                    <div class="footer-tagline">Горы зовут — мы ждём</div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="#about">Главная</a></li>
+                        <li><a href="#rooms">Номера</a></li>
+                        <li><a href="#amenities">Удобства</a></li>
+                        <li><a href="#gallery">Галерея</a></li>
+                        <li><a href="#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Контакты</h4>
+                    <p><i class="fas fa-phone"></i> +7 (999) 123-45-67</p>
+                    <p><i class="fas fa-envelope"></i> info@lamont-hotel.ru</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Альпийская область</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Апарт-отель «Ламонт». Все права защищены.</p>
+                <p><a href="#">Политика конфиденциальности</a></p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Модальное окно бронирования -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h3>Бронирование</h3>
+            <form id="modalBookingForm" onsubmit="submitModalForm(event)">
+                <div class="form-group">
+                    <label for="modal-name">Имя</label>
+                    <input type="text" id="modal-name" name="name" required placeholder="Ваше имя">
+                </div>
+                
+                <div class="form-group">
+                    <label for="modal-contact">Телефон/E-mail</label>
+                    <input type="text" id="modal-contact" name="contact" required placeholder="+7 ___ ___-__-__ или email">
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="modal-checkin">Дата заезда</label>
+                        <input type="date" id="modal-checkin" name="checkin" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="modal-checkout">Дата выезда</label>
+                        <input type="date" id="modal-checkout" name="checkout" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="modal-guests">Количество гостей</label>
+                        <select id="modal-guests" name="guests" required>
+                            <option value="">Выбрать</option>
+                            <option value="1">1 гость</option>
+                            <option value="2">2 гостя</option>
+                            <option value="3">3 гостя</option>
+                            <option value="4">4+ гостей</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="modal-room-type">Тип номера</label>
+                        <select id="modal-room-type" name="room-type" required>
+                            <option value="">Выбрать</option>
+                            <option value="standard">Стандарт</option>
+                            <option value="lux">Люкс</option>
+                            <option value="penthouse">Президентский пентхаус</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn-submit">Отправить заявку</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Лайтбокс -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <img src="" alt="Full size image" id="lightbox-img">
+    </div>
+    
+    <!-- Уведомление -->
+    <div class="notification" id="notification">
+        Спасибо! Мы свяжемся с вами в ближайшее время.
+    </div>
+    
+    <script>
+        // ========================================
+        // ИЗМЕНЕНИЕ ХЕДЕРА ПРИ СКРОЛЛЕ
+        // ========================================
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // ========================================
+        // МОБИЛЬНОЕ МЕНЮ
+        // ========================================
+        function toggleMobileNav() {
+            const mobileNav = document.getElementById('mobileNav');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            mobileNav.classList.toggle('active');
+            menuBtn.classList.toggle('active');
+        }
+        
+        // ========================================
+        // АНИМАЦИИ ПРИ СКРОЛЛЕ
+        // ========================================
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // ========================================
+        // КАРУСЕЛЬ НОМЕРОВ
+        // ========================================
+        let currentRoomSlide = 0;
+        const roomsTrack = document.getElementById('roomsTrack');
+        const roomCards = document.querySelectorAll('.room-card');
+        const totalRoomSlides = roomCards.length;
+        
+        function updateRoomsCarousel() {
+            const cardWidth = roomCards[0].offsetWidth + 32; // 32px = gap
+            roomsTrack.style.transform = `translateX(-${currentRoomSlide * cardWidth}px)`;
+            
+            // Обновляем точки
+            document.querySelectorAll('#roomsDots .carousel-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentRoomSlide);
+            });
+        }
+        
+        function moveCarousel(direction) {
+            currentRoomSlide += direction;
+            
+            if (currentRoomSlide < 0) {
+                currentRoomSlide = totalRoomSlides - 1;
+            } else if (currentRoomSlide >= totalRoomSlides) {
+                currentRoomSlide = 0;
+            }
+            
+            updateRoomsCarousel();
+        }
+        
+        function goToSlide(index) {
+            currentRoomSlide = index;
+            updateRoomsCarousel();
+        }
+        
+        // Автопереключение карусели каждые 5 секунд
+        setInterval(() => {
+            moveCarousel(1);
+        }, 5000);
+        
+        // ========================================
+        // КАРУСЕЛЬ ОТЗЫВОВ
+        // ========================================
+        let currentReviewSlide = 0;
+        const reviewsTrack = document.getElementById('reviewsTrack');
+        const reviewCards = document.querySelectorAll('.review-card');
+        const totalReviewSlides = reviewCards.length;
+        
+        function moveReviews(direction) {
+            currentReviewSlide += direction;
+            
+            if (currentReviewSlide < 0) {
+                currentReviewSlide = totalReviewSlides - 1;
+            } else if (currentReviewSlide >= totalReviewSlides) {
+                currentReviewSlide = 0;
+            }
+            
+            reviewsTrack.style.transform = `translateX(-${currentReviewSlide * 100}%)`;
+        }
+        
+        // ========================================
+        // ЛАЙТБОКС
+        // ========================================
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        
+        function openLightbox(element) {
+            const img = element.querySelector('img');
+            lightboxImg.src = img.src.replace('w=800', 'w=1600');
+            lightbox.classList.add('active');
+        }
+        
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+        }
+        
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+        
+        // ========================================
+        // МОДАЛЬНОЕ ОКНО
+        // ========================================
+        const modal = document.getElementById('bookingModal');
+        
+        function openModal() {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+        
+        // ========================================
+        // ОТПРАВКА ФОРМЫ
+        // ========================================
+        function validateForm(form) {
+            const checkin = new Date(form.checkin.value);
+            const checkout = new Date(form.checkout.value);
+            
+            if (checkout <= checkin) {
+                alert('Дата выезда должна быть позже даты заезда');
+                return false;
+            }
+            
+            return true;
+        }
+        
+        function submitForm(event) {
+            event.preventDefault();
+            const form = event.target;
+            
+            if (!validateForm(form)) {
+                return;
+            }
+            
+            showNotification();
+            form.reset();
+        }
+        
+        function submitModalForm(event) {
+            event.preventDefault();
+            const form = event.target;
+            
+            if (!validateForm(form)) {
+                return;
+            }
+            
+            showNotification();
+            form.reset();
+            closeModal();
+        }
+        
+        function showNotification() {
+            const notification = document.getElementById('notification');
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 4000);
+        }
+        
+        // ========================================
+        // УСТАНОВКА МИНИМАЛЬНОЙ ДАТЫ (СЕГОДНЯ)
+        // ========================================
+        const today = new Date().toISOString().split('T')[0];
+        document.querySelectorAll('input[type="date"]').forEach(input => {
+            input.setAttribute('min', today);
+        });
+        
+        // ========================================
+        // АДАПТАЦИЯ КАРУСЕЛИ ПРИ ИЗМЕНЕНИИ РАЗМЕРА
+        // ========================================
+        window.addEventListener('resize', () => {
+            updateRoomsCarousel();
+        });
+    </script>
+</body>
+</html>
